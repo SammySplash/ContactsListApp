@@ -12,7 +12,7 @@ struct Person {
     let email: String
     
     var fullName: String {
-        return "\(name) \(surname)"
+        return "\(surname) \(name)"
     }
 }
 
@@ -86,7 +86,7 @@ final class DataStore {
         "+79591234581"
     ]
     
-    func generateRandomContacts(count: Int) -> [Person] {
+    func generateRandomContacts() -> [Person] {
         var contacts: [Person] = []
         
         name.shuffle()
@@ -94,7 +94,7 @@ final class DataStore {
         email.shuffle()
         phoneNumber.shuffle()
         
-        let numberOfContacts = min(count, name.count, surname.count, email.count, phoneNumber.count)
+        let numberOfContacts = min(name.count, surname.count, email.count, phoneNumber.count)
         
         for index in 0..<numberOfContacts {
             let newContact = Person(
@@ -111,4 +111,4 @@ final class DataStore {
 }
 
 let dataStore = DataStore()
-var contactsList = dataStore.generateRandomContacts(count: 17)
+var peopleList = dataStore.generateRandomContacts()
