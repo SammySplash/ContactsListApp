@@ -9,17 +9,24 @@ import UIKit
 
 final class ContactListViewController: UITableViewController {
     
-    private var contactsList = peopleList
+    private var contactsList = contacts
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        
+        let contactsDetailsVC = segue.destination as? ContactDetailsViewController
+        contactsDetailsVC?.contact = contactsList[indexPath.row]
     }
 }
 
 //MARK: - UITableViewDataSource
 extension ContactListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        peopleList.count
+        contactsList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
